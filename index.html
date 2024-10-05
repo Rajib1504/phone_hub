@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Phone hub</title>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0d6dfd0c",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="navbar bg-primary">
+          <div class="flex-1">
+            <a class="btn btn-ghost text-xl">Phone Hub</a>
+          </div>
+
+          <!-- <div class="form-control">
+              <input
+                type="text"
+                placeholder="Search"
+                class="input input-bordered w-24 md:w-auto"
+              />
+            </div> -->
+          <div class="dropdown dropdown-end">
+            <div
+              tabindex="0"
+              role="button"
+              class="btn btn-ghost btn-circle avatar"
+            >
+              <div class="w-10 rounded-full">
+                <img
+                  alt="Tailwind CSS Navbar component"
+                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <!-- search bar  -->
+      <div
+        class="searchBar gap-2 flex justify-center items-center mx-auto flex-row"
+      >
+        <div>
+          <input
+            id="searchBox"
+            type="text"
+            placeholder="Type here"
+            class="input input-bordered input-primary w-full max-w-xs"
+          />
+        </div>
+        <button
+          onclick="handelSearch()"
+          id="search"
+          class="btn bg-[#0D6EFD] btn-blue-400"
+        >
+          Search
+        </button>
+      </div>
+      <!-- showAllbtn  -->
+      <div class="text-center">
+        <button
+          onclick="handelShowAll()"
+          id="showAll"
+          class="btn btn-wide bg-[#fd0d0d57] mt-5"
+        >
+          Show All
+        </button>
+      </div>
+      <!-- spinner  -->
+      <div class="flex justify-center my-4">
+        <span
+          id="spinner"
+          class="loading loading-infinity hidden loading-lg"
+        ></span>
+      </div>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
