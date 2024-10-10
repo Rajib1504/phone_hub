@@ -1,3 +1,21 @@
+// spiner function
+const spiner = () => {
+  const spiner = document.getElementById("spiner");
+  spiner.classList.add("block");
+  loadAllPhones();
+};
+// load data
+const loadAllPhones = async () => {
+  setTimeout(() => {
+    const spiner = document.getElementById("spiner");
+    spiner.classList.remove("block");
+  }, 3000);
+  const responce = await fetch(
+    "https://openapi.programming-hero.com/api/phones?search=iphone"
+  );
+  const data = await responce.json();
+  console.log(data);
+};
 // const loadAllPhones = async () => {
 //   console.log(searchText);
 //   spiner
