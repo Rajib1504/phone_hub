@@ -1,5 +1,5 @@
 
-.spinner {  display: none; width: 44px; height: 44px;
+.spinner {  width: 44px; height: 44px;
       animation: spinner-y0fdc1 2s infinite ease; transform-style: preserve-3d;
       } .spinner > div { background-color: rgba(0,77,255,0.2); height: 100%;
       position: absolute; width: 100%; border: 2px solid #004dff; } .spinner

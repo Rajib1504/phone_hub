@@ -1,21 +1,65 @@
 // spiner function
-const spiner = () => {
-  const spiner = document.getElementById("spiner");
-  spiner.classList.add("block");
-  loadAllPhones();
+const spinerTarget = () => {
+  document.getElementById("spinerContainer").style.display = "none";
+  fetchPhones();
 };
 // load data
-const loadAllPhones = async () => {
+const loadAllPhones = () => {
+  document.getElementById("spinerContainer").style.display = "block";
   setTimeout(() => {
-    const spiner = document.getElementById("spiner");
-    spiner.classList.remove("block");
+    spinerTarget();
   }, 3000);
+};
+// defalut phones -6
+const fetchPhones = async (status) => {
   const responce = await fetch(
     "https://openapi.programming-hero.com/api/phones?search=iphone"
   );
   const data = await responce.json();
-  console.log(data);
+  if (status) {
+    const phonesArr = data.data;
+    console.log(phonesArr);
+    displayPhones(phonesArr);
+  } else {
+    const phonesArr = data.data.slice(0, 6);
+    displayPhones(phonesArr);
+    console.log(phonesArr);
+  }
 };
+
+// display phones
+const displayPhones = (phonesArr) => {
+  phonesArr.forEach((phones) => {
+    console.log(phones);
+    const display = document.getElementById("display");
+    const add = document.createElement("div");
+    add.innerHTML = `
+     <div
+          id="phoneCard"
+          class="card card-compact bg-base-100 w-96 shadow-xl"
+        >
+          <figure>
+            <img  src="${phones.image}" alt="phone" />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title">${phones.phone_name}</h2>
+            <p></p>
+            <div class="card-actions justify-end">
+              <button class="btn btn-primary text-white">Show details</button>
+            </div>
+          </div>
+        </div>
+    `;
+    display.appendChild(add);
+  });
+};
+// show all btn
+const showAll = () => {
+  fetchPhones(true);
+};
+// const arr = [12, 40, 43, 53, "raj", "rohim", "kiron"];
+// const [my_age, n2, ...other] = arr;
+// console.log(my_age);
 // const loadAllPhones = async () => {
 //   console.log(searchText);
 //   spiner
