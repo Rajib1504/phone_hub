@@ -1,36 +1,44 @@
 // spiner function
 const spinerTarget = () => {
+  const inputValue = document.getElementById("brandName").value; //search text
+  console.log(inputValue);
+  fetchPhones(false, inputValue);
   document.getElementById("spinerContainer").style.display = "none";
-  fetchPhones();
 };
 // load data
 const loadAllPhones = () => {
   document.getElementById("spinerContainer").style.display = "block";
+
+  // console.log(brandName);
   setTimeout(() => {
     spinerTarget();
-  }, 3000);
+  }, 6000);
 };
 // defalut phones -6
-const fetchPhones = async (status) => {
+const fetchPhones = async (status, inputValue) => {
   const responce = await fetch(
-    "https://openapi.programming-hero.com/api/phones?search=iphone"
+    ` https:openapi.programming-hero.com/api/phones?search=${
+      inputValue ? inputValue : "iphone"
+    } `
   );
   const data = await responce.json();
+  console.log(data);
   if (status) {
     const phonesArr = data.data;
-    console.log(phonesArr);
+    // console.log(phonesArr);
     displayPhones(phonesArr);
   } else {
     const phonesArr = data.data.slice(0, 6);
     displayPhones(phonesArr);
-    console.log(phonesArr);
+    // console.log(phonesArr);
   }
 };
 
 // display phones
 const displayPhones = (phonesArr) => {
   phonesArr.forEach((phones) => {
-    console.log(phones);
+    const { brand, phone_name, slug, image } = phones;
+    // console.log(slug);
     const display = document.getElementById("display");
     const add = document.createElement("div");
     add.innerHTML = `
@@ -39,11 +47,11 @@ const displayPhones = (phonesArr) => {
           class="card card-compact bg-base-100 w-96 shadow-xl"
         >
           <figure>
-            <img  src="${phones.image}" alt="phone" />
+            <img  src="${image}" alt="phone" />
           </figure>
           <div class="card-body">
-            <h2 class="card-title">${phones.phone_name}</h2>
-            <p></p>
+            <h2 class="card-title">${phone_name}</h2>
+            <p>${brand}</p>
             <div class="card-actions justify-end">
               <button class="btn btn-primary text-white">Show details</button>
             </div>
@@ -53,10 +61,12 @@ const displayPhones = (phonesArr) => {
     display.appendChild(add);
   });
 };
+
 // show all btn
 const showAll = () => {
   fetchPhones(true);
 };
+
 // const arr = [12, 40, 43, 53, "raj", "rohim", "kiron"];
 // const [my_age, n2, ...other] = arr;
 // console.log(my_age);
