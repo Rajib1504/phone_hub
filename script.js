@@ -44,7 +44,7 @@ const displayPhones = (phonesArr) => {
     add.innerHTML = `
      <div
           id="phoneCard"
-          class="card card-compact bg-base-100 w-96 shadow-xl"
+          class="card card-compact bg-base-100  shadow-xl"
         >
           <figure>
             <img  src="${image}" alt="phone" />
